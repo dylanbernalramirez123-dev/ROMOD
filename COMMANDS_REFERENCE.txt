@@ -1,0 +1,212 @@
+╔════════════════════════════════════════════════════════════════════════╗
+║                   🎮 ROMOD SLASH COMMANDS v1.0                         ║
+║         Todos los Comandos de Seguridad están Implementados            ║
+╚════════════════════════════════════════════════════════════════════════╝
+
+┌─────────────────────────────────────────────────────────────────────────┐
+│ 🚨 ANTI-RAID (/anti-raid)                                               │
+├─────────────────────────────────────────────────────────────────────────┤
+│                                                                          │
+│  Subcomando: config                                                     │
+│  ├─ setting: join_rate_limit      | Usuarios para activar alerta       │
+│  ├─ setting: join_rate_window     | Segundos de ventana                │
+│  ├─ setting: min_account_age      | Edad mínima de cuenta (días)       │
+│  └─ setting: verification_level   | Nivel de verificación              │
+│                                                                          │
+│  Subcomando: status                                                     │
+│  └─ Muestra: Estado, valores actuales, canal de alertas                │
+│                                                                          │
+│  Subcomando: quarantine                                                 │
+│  ├─ action: list     | Ver cuentas en cuarentena                       │
+│  └─ action: remove   | Remover usuario de cuarentena                   │
+│                                                                          │
+│  📝 Ejemplo:                                                             │
+│     /anti-raid config setting:join_rate_limit value:10                │
+│     /anti-raid status                                                   │
+│     /anti-raid quarantine action:list                                  │
+│                                                                          │
+└─────────────────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────────────────┐
+│ 🛑 ANTI-SPAM (/anti-spam)                                               │
+├─────────────────────────────────────────────────────────────────────────┤
+│                                                                          │
+│  Subcomando: config                                                     │
+│  ├─ setting: message_threshold       | Número de mensajes para spam    │
+│  ├─ setting: spam_window             | Ventana en milisegundos         │
+│  └─ setting: levenshtein_threshold   | % similitud (0-100)             │
+│                                                                          │
+│  Subcomando: status                                                     │
+│  └─ Muestra: Estado, umbrales configurados, información                │
+│                                                                          │
+│  Subcomando: warnings                                                   │
+│  ├─ usuario: @user   | Ver warnings acumulados                         │
+│  └─ Info: Infracciones, timeout status                                 │
+│                                                                          │
+│  Subcomando: reset-warnings                                             │
+│  ├─ usuario: @user   | Limpiar warnings                                │
+│  └─ Resultado: Contador reiniciado a 0                                 │
+│                                                                          │
+│  📝 Ejemplo:                                                             │
+│     /anti-spam config setting:levenshtein_threshold value:85           │
+│     /anti-spam status                                                   │
+│     /anti-spam warnings usuario:@spammer                               │
+│     /anti-spam reset-warnings usuario:@user                            │
+│                                                                          │
+└─────────────────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────────────────┐
+│ 💀 ANTI-NUKE (/anti-nuke)                                               │
+├─────────────────────────────────────────────────────────────────────────┤
+│                                                                          │
+│  Subcomando: config                                                     │
+│  ├─ setting: channel_threshold   | Canales para activar pánico        │
+│  ├─ setting: role_threshold      | Roles para activar pánico          │
+│  └─ setting: action_window       | Segundos de ventana                │
+│                                                                          │
+│  Subcomando: status                                                     │
+│  └─ Muestra: Estado, umbrales, explicación de funcionamiento           │
+│                                                                          │
+│  Subcomando: blocked-admins                                             │
+│  └─ Muestra: Lista de admins actualmente bloqueados                    │
+│                                                                          │
+│  Subcomando: unlock-admin                                               │
+│  ├─ admin: @admin   | Admin a desbloquear                              │
+│  └─ Resultado: Permiso de actuar restaurado                            │
+│                                                                          │
+│  📝 Ejemplo:                                                             │
+│     /anti-nuke config setting:channel_threshold value:3                │
+│     /anti-nuke status                                                   │
+│     /anti-nuke blocked-admins                                          │
+│     /anti-nuke unlock-admin admin:@admin                               │
+│                                                                          │
+└─────────────────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────────────────┐
+│ 📊 UTILIDADES                                                            │
+├─────────────────────────────────────────────────────────────────────────┤
+│                                                                          │
+│  /stats                                                                 │
+│  └─ Muestra: Servidores, usuarios rastreados, memoria usada            │
+│                                                                          │
+│  /config                                                                │
+│  └─ Muestra: Toda la configuración actual del servidor                 │
+│     Requiere: Permisos de Admin                                        │
+│                                                                          │
+│  /help                                                                  │
+│  └─ Muestra: Lista de comandos disponibles                             │
+│                                                                          │
+│  /setup-alerts                                                          │
+│  ├─ alert_channel: #canal  | Canal para alertas (REQUERIDO)           │
+│  ├─ log_channel: #canal    | Canal para logs (OPCIONAL)               │
+│  └─ Efecto: Configura dónde se envían notificaciones                  │
+│     Requiere: Permisos de Admin                                        │
+│                                                                          │
+│  📝 Ejemplo:                                                             │
+│     /stats                                                              │
+│     /config                                                             │
+│     /help                                                               │
+│     /setup-alerts alert_channel:#seguridad log_channel:#logs           │
+│                                                                          │
+└─────────────────────────────────────────────────────────────────────────┘
+
+═══════════════════════════════════════════════════════════════════════════
+
+⚙️  TABLA DE CONFIGURACIÓN RECOMENDADA
+
+┌──────────────────┬─────────────────┬──────────────┬────────────────────┐
+│ Tipo de Servidor │ Join Rate Limit │ Message Thr. │ Levenshtein        │
+├──────────────────┼─────────────────┼──────────────┼────────────────────┤
+│ Pequeño (< 1k)   │ 8               │ 7            │ 80%                │
+│ Mediano (1-10k)  │ 15              │ 10           │ 85%                │
+│ Grande (> 10k)   │ 25              │ 15           │ 90%                │
+│ Gaming           │ 50              │ 20           │ 75%                │
+│ Corporativo      │ 5               │ 3            │ 95%                │
+└──────────────────┴─────────────────┴──────────────┴────────────────────┘
+
+═══════════════════════════════════════════════════════════════════════════
+
+✨ CARACTERÍSTICAS ESPECIALES
+
+🔐 Permisos Inteligentes
+   ├─ Comandos de config: Solo admin (Manage Guild)
+   ├─ /stats: Accesible para todos
+   └─ /help: Accesible para todos
+
+📊 Validación Automática
+   ├─ Rango de valores verificado
+   ├─ Mensajes de error claros
+   └─ Sugerencias de parámetros válidos
+
+💾 Persistencia de Configuración
+   ├─ Cambios guardados en StateManager
+   ├─ Configuración por servidor
+   └─ No se pierde al reiniciar
+
+🔔 Notificaciones en Tiempo Real
+   ├─ Respuestas inmediatas a comandos
+   ├─ Embeds con código de colores
+   └─ Información detallada y clara
+
+═══════════════════════════════════════════════════════════════════════════
+
+📋 FLUJO DE CONFIGURACIÓN RECOMENDADO
+
+1. /setup-alerts alert_channel:#alertas log_channel:#logs
+   └─ Configurar dónde se enviarán las alertas
+
+2. /config
+   └─ Ver valores iniciales
+
+3. /anti-raid config setting:join_rate_limit value:10
+   └─ Personalizar Anti-Raid
+
+4. /anti-spam config setting:levenshtein_threshold value:85
+   └─ Personalizar Anti-Spam
+
+5. /anti-nuke config setting:channel_threshold value:3
+   └─ Personalizar Anti-Nuke
+
+6. /stats
+   └─ Verificar que todo funciona
+
+═══════════════════════════════════════════════════════════════════════════
+
+🚀 PRÓXIMOS PASOS
+
+1. Instalar dependencias:     npm install
+2. Compilar TypeScript:       npm run build
+3. Iniciar bot:               npm start
+4. Verificar estructura:      npm run verify
+5. Ver demostración:          npm run demo
+6. Seguir SETUP_CHECKLIST.md  (Guía paso a paso)
+
+═══════════════════════════════════════════════════════════════════════════
+
+📖 DOCUMENTACIÓN RELACIONADA
+
+├─ README.md              (Características principales)
+├─ COMMANDS_GUIDE.md      (Guía detallada de cada comando)
+├─ SETUP_CHECKLIST.md     (Primeros pasos después de iniciar)
+├─ QUICK_START.md         (Instalación rápida)
+├─ ARCHITECTURE.md        (Arquitectura técnica)
+└─ PROJECT_STRUCTURE.md   (Estructura del proyecto)
+
+═══════════════════════════════════════════════════════════════════════════
+
+✅ COMANDOS IMPLEMENTADOS: 7 / 7
+
+✔ antiRaidConfig          (3 subcomandos)
+✔ antiSpamConfig          (4 subcomandos)
+✔ antiNukeConfig          (4 subcomandos)
+✔ statsCommand
+✔ configCommand
+✔ helpCommand
+✔ setupAlertsCommand
+
+Total de Subcomandos: 18
+Estado: ✅ TODOS IMPLEMENTADOS Y LISTOS
+
+═══════════════════════════════════════════════════════════════════════════
+
+🛡️ RoMod está listo para proteger tu servidor | v1.0
